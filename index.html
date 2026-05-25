@@ -1,606 +1,777 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CabinCast Pro — Smart TV Welcome Screens for STR Hosts</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CabinCast Pro — Smart TV Welcome Screens for Short-Term Rentals</title>
+<meta name="description" content="Transform your cabin's TV into a fully automated guest experience. Live weather, local activities, WiFi QR codes, your branding. Set it once. It runs forever." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --pine: #1e3a2f;
-    --pine-mid: #2d5a45;
-    --pine-light: #3d7a5f;
-    --gold: #c8973a;
-    --gold-light: #e4b86a;
-    --cream: #f7f2ea;
-    --cream-dark: #ede5d8;
-    --bark: #5c3d28;
-    --snow: #ffffff;
-    --mist: rgba(255,255,255,0.08);
+    /* Teal / Green / Gold palette */
+    --teal-deep: #0a3d3f;
+    --teal-mid: #0f5f5c;
+    --teal-bright: #14b8a6;
+    --teal-soft: #e6f4f3;
+    --forest: #1e4d3a;
+    --moss: #4a7c59;
+    --sage: #8fb09a;
+    --gold: #c9a449;
+    --gold-bright: #e0b94d;
+    --gold-soft: #f5e9c4;
+    --cream: #fbf8f1;
+    --ink: #0d1f1f;
+    --ink-soft: #2d4444;
+    --line: rgba(10, 61, 63, 0.12);
   }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-
   body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--pine);
-    color: var(--cream);
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
 
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 60px;
-    background: linear-gradient(to bottom, rgba(30,58,47,0.95), transparent);
-    backdrop-filter: blur(8px);
-  }
-  .nav-logo { display: flex; flex-direction: column; }
-  .nav-logo-main { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); letter-spacing: 0.5px; }
-  .nav-logo-sub { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.5; margin-top: 2px; }
-  nav a { color: var(--cream); text-decoration: none; font-size: 14px; opacity: 0.7; letter-spacing: 0.5px; transition: opacity 0.2s; }
-  nav a:hover { opacity: 1; }
-  .nav-links { display: flex; gap: 36px; align-items: center; }
-  .nav-cta { background: var(--gold); color: var(--pine) !important; opacity: 1 !important; padding: 10px 24px; border-radius: 6px; font-weight: 600; font-size: 13px !important; letter-spacing: 1px; text-transform: uppercase; }
-  .nav-cta:hover { background: var(--gold-light) !important; }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    text-align: center;
-    padding: 120px 40px 80px;
-    position: relative;
-    overflow: hidden;
-    background: radial-gradient(ellipse at 50% 0%, rgba(61,122,95,0.4) 0%, transparent 70%),
-                linear-gradient(180deg, var(--pine) 0%, #162b21 100%);
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image: radial-gradient(circle at 20% 80%, rgba(200,151,58,0.08) 0%, transparent 50%),
-                      radial-gradient(circle at 80% 20%, rgba(61,122,95,0.12) 0%, transparent 50%);
-  }
-
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(200,151,58,0.15); border: 1px solid rgba(200,151,58,0.3);
-    color: var(--gold-light); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
-    padding: 8px 20px; border-radius: 100px; margin-bottom: 32px;
-    animation: fadeUp 0.8s ease both;
-  }
-  .hero-badge::before { content: '✦'; }
-
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(48px, 7vw, 96px);
-    font-weight: 700;
+  /* ===== TYPOGRAPHY ===== */
+  h1, h2, h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
     line-height: 1.05;
-    margin-bottom: 8px;
-    animation: fadeUp 0.8s 0.1s ease both;
+    letter-spacing: -0.02em;
   }
-
-  h1 span { color: var(--gold); font-style: italic; }
-
-  .hero-tagline {
-    font-size: clamp(16px, 2vw, 22px);
-    opacity: 0.6;
-    font-weight: 300;
-    letter-spacing: 4px;
+  h1 { font-size: clamp(2.5rem, 6vw, 5rem); }
+  h2 { font-size: clamp(2rem, 4.5vw, 3.5rem); }
+  h3 { font-size: 1.25rem; font-weight: 600; }
+  .eyebrow {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    margin-bottom: 28px;
-    animation: fadeUp 0.8s 0.2s ease both;
+    color: var(--gold);
   }
-
-  .hero-desc {
-    font-size: clamp(16px, 1.8vw, 20px);
-    max-width: 680px;
-    line-height: 1.7;
-    opacity: 0.75;
-    margin-bottom: 48px;
-    animation: fadeUp 0.8s 0.3s ease both;
-  }
-
-  .hero-cta {
-    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
-    animation: fadeUp 0.8s 0.4s ease both;
-  }
-
-  .btn-primary {
-    background: var(--gold); color: var(--pine);
-    padding: 16px 40px; border-radius: 8px;
-    font-weight: 600; font-size: 15px; letter-spacing: 0.5px;
-    text-decoration: none; transition: all 0.2s;
-    box-shadow: 0 4px 24px rgba(200,151,58,0.3);
-  }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(200,151,58,0.4); }
-
-  .btn-secondary {
-    border: 1px solid rgba(255,255,255,0.25); color: var(--cream);
-    padding: 16px 40px; border-radius: 8px;
-    font-weight: 400; font-size: 15px;
-    text-decoration: none; transition: all 0.2s;
-  }
-  .btn-secondary:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); }
-
-  /* ── SCREEN MOCKUP ── */
-  .mockup-wrap {
-    margin-top: 80px;
-    width: 100%; max-width: 900px;
-    animation: fadeUp 0.8s 0.5s ease both;
-  }
-
-  .tv-frame {
-    background: #0d0d0d;
-    border-radius: 16px;
-    padding: 20px 20px 48px;
-    box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 2px rgba(255,255,255,0.05);
-    position: relative;
-  }
-
-  .tv-screen {
-    background: linear-gradient(135deg, #1a2744 0%, #1a1729 50%, #192028 100%);
-    border-radius: 8px;
-    aspect-ratio: 16/9;
-    overflow: hidden;
-    position: relative;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-  }
-
-  .tv-screen-content {
-    text-align: center; padding: 40px;
-  }
-  .tv-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #d4537e; margin-bottom: 12px; }
-  .tv-cabin { font-family: 'Playfair Display', serif; font-size: 42px; color: #fff; margin-bottom: 8px; }
-  .tv-welcome { font-size: 18px; color: rgba(255,255,255,0.6); }
-  .tv-dots { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; }
-  .tv-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.2); }
-  .tv-dot.active { background: #d4537e; }
-  .tv-stand { width: 120px; height: 20px; background: #1a1a1a; margin: 0 auto; border-radius: 0 0 8px 8px; }
-  .tv-base { width: 200px; height: 8px; background: #111; margin: 0 auto; border-radius: 4px; }
-
-  /* ── SECTIONS ── */
-  section { padding: 100px 60px; max-width: 1200px; margin: 0 auto; }
-
-  .section-label {
-    font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 16px;
-  }
-
-  h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(36px, 5vw, 64px);
-    line-height: 1.1;
-    margin-bottom: 24px;
-  }
-
-  h2 em { color: var(--gold); font-style: italic; }
-
-  .section-intro {
-    font-size: 18px; opacity: 0.65; line-height: 1.7; max-width: 600px; margin-bottom: 60px;
-  }
-
-  /* ── FEATURES GRID ── */
-  .features-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2px;
-    background: rgba(255,255,255,0.04);
-    border-radius: 16px; overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.06);
-  }
-
-  .feature-card {
-    background: rgba(255,255,255,0.02);
-    padding: 36px;
-    transition: background 0.2s;
-  }
-  .feature-card:hover { background: rgba(255,255,255,0.05); }
-
-  .feature-icon {
-    width: 48px; height: 48px;
-    background: rgba(200,151,58,0.15);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px; margin-bottom: 20px;
+  .italic-accent {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
     color: var(--gold);
   }
 
-  .feature-title { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
-  .feature-desc { font-size: 14px; opacity: 0.55; line-height: 1.6; }
+  /* ===== LAYOUT ===== */
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+  section { padding: 6rem 0; position: relative; }
 
-  /* ── SLIDES LIST ── */
-  .slides-wrap {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  /* ===== NAV ===== */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(251, 248, 241, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+  .logo-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--teal-deep);
+    letter-spacing: -0.02em;
+  }
+  .logo-sub {
+    font-size: 0.7rem;
+    color: var(--moss);
+    margin-top: 2px;
+    font-weight: 500;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+  .nav-links a { color: var(--ink-soft); transition: color .2s; }
+  .nav-links a:hover { color: var(--teal-bright); }
+  .nav-cta {
+    background: var(--teal-deep);
+    color: var(--cream) !important;
+    padding: 0.6rem 1.2rem;
+    border-radius: 100px;
+    font-weight: 600;
+    transition: all .2s;
+  }
+  .nav-cta:hover { background: var(--teal-mid); transform: translateY(-1px); }
+  @media (max-width: 720px) {
+    .nav-links a:not(.nav-cta) { display: none; }
   }
 
+  /* ===== HERO ===== */
+  .hero {
+    padding: 5rem 0 7rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 60%;
+    height: 80%;
+    background: radial-gradient(circle, rgba(20, 184, 166, 0.12), transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 50%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(201, 164, 73, 0.1), transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    padding: 0.4rem 0.9rem;
+    background: var(--teal-soft);
+    color: var(--teal-deep);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    color: var(--teal-deep);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 .gold-word {
+    color: var(--gold);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .hero-by {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--moss);
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+  }
+  .hero p.lede {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin-bottom: 2rem;
+    max-width: 540px;
+  }
+  .hero-cta-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.75rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all .25s;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: var(--teal-deep);
+    color: var(--cream);
+  }
+  .btn-primary:hover { background: var(--teal-mid); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(10, 61, 63, 0.25); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--teal-deep);
+    border: 1.5px solid var(--teal-deep);
+  }
+  .btn-secondary:hover { background: var(--teal-deep); color: var(--cream); }
+
+  /* ===== MOCK TV ===== */
+  .tv-mock {
+    background: linear-gradient(135deg, var(--teal-deep), var(--forest));
+    border-radius: 18px;
+    padding: 2.5rem 2rem;
+    color: var(--cream);
+    box-shadow: 0 25px 60px -15px rgba(10, 61, 63, 0.4),
+                0 0 0 8px rgba(13, 31, 31, 0.08);
+    position: relative;
+    overflow: hidden;
+    transform: perspective(1500px) rotateY(-6deg) rotateX(2deg);
+    transition: transform .5s;
+  }
+  .tv-mock:hover { transform: perspective(1500px) rotateY(-2deg) rotateX(0deg); }
+  .tv-mock::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 200%;
+    height: 50%;
+    background: radial-gradient(ellipse, rgba(224, 185, 77, 0.15), transparent 60%);
+    pointer-events: none;
+  }
+  .tv-header {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-bright);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    position: relative;
+  }
+  .tv-greeting {
+    font-family: 'Fraunces', serif;
+    font-size: 2.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    position: relative;
+  }
+  .tv-greeting .name { color: var(--gold-bright); font-style: italic; }
+  .tv-details {
+    font-size: 0.9rem;
+    opacity: 0.85;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .tv-pills {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .tv-pill {
+    background: rgba(224, 185, 77, 0.15);
+    border: 1px solid rgba(224, 185, 77, 0.3);
+    padding: 0.3rem 0.7rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    color: var(--gold-soft);
+  }
+
+  /* ===== FEATURES SECTION ===== */
+  .features {
+    background: linear-gradient(180deg, var(--cream) 0%, var(--teal-soft) 100%);
+  }
+  .section-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 4rem;
+  }
+  .section-header .eyebrow { display: block; margin-bottom: 1rem; }
+  .section-header h2 { color: var(--teal-deep); margin-bottom: 1.25rem; }
+  .section-header p { color: var(--ink-soft); font-size: 1.1rem; }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .feature-card {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--teal-bright), var(--gold));
+    opacity: 0;
+    transition: opacity .3s;
+    z-index: 0;
+  }
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px -10px rgba(10, 61, 63, 0.15);
+    border-color: transparent;
+  }
+  .feature-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+    position: relative;
+  }
+  .feature-card h3 {
+    color: var(--teal-deep);
+    margin-bottom: 0.5rem;
+    position: relative;
+  }
+  .feature-card p {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    position: relative;
+  }
+
+  /* ===== SLIDES LIST ===== */
+  .slides { background: var(--cream); }
+  .slides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.75rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
   .slide-item {
-    display: flex; align-items: center; gap: 14px;
-    padding: 16px 20px;
-    background: rgba(255,255,255,0.03);
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.06);
-    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--teal-soft);
+    border-radius: 12px;
+    border-left: 3px solid var(--gold);
+    transition: all .25s;
+  }
+  .slide-item:hover {
+    background: var(--cream);
+    border-left-color: var(--teal-bright);
+    box-shadow: 0 4px 20px rgba(10, 61, 63, 0.08);
+    transform: translateX(4px);
   }
   .slide-num {
-    width: 28px; height: 28px;
-    background: rgba(200,151,58,0.15);
-    color: var(--gold); border-radius: 6px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 600; flex-shrink: 0;
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--gold);
+    min-width: 2rem;
+  }
+  .slide-text {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    font-weight: 500;
   }
 
-  /* ── PRICING ── */
-  .pricing-section {
-    background: linear-gradient(135deg, rgba(45,90,69,0.3) 0%, rgba(30,58,47,0.1) 100%);
-    border-radius: 24px;
-    border: 1px solid rgba(200,151,58,0.2);
-    padding: 80px 60px;
-    text-align: center;
-    max-width: 1100px;
-    margin: 0 auto 40px;
-  }
-
-  .pricing-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-    margin-top: 60px;
-  }
-
-  .price-card {
-    background: rgba(255,255,255,0.04);
-    border-radius: 16px;
-    padding: 40px 32px;
-    border: 1px solid rgba(255,255,255,0.08);
+  /* ===== IMPACT SECTION ===== */
+  .impact {
+    background: var(--teal-deep);
+    color: var(--cream);
     position: relative;
-    transition: transform 0.2s;
+    overflow: hidden;
   }
-  .price-card:hover { transform: translateY(-4px); }
+  .impact::before {
+    content: '';
+    position: absolute;
+    top: -30%; right: -10%;
+    width: 50%; height: 80%;
+    background: radial-gradient(circle, rgba(201, 164, 73, 0.15), transparent 70%);
+    pointer-events: none;
+  }
+  .impact .section-header { position: relative; }
+  .impact .section-header .eyebrow { color: var(--gold-bright); }
+  .impact .section-header h2 { color: var(--cream); }
+  .impact .section-header h2 .italic-accent { color: var(--gold-bright); }
+  .impact .section-header p { color: rgba(251, 248, 241, 0.85); }
+  .impact-list {
+    max-width: 720px;
+    margin: 0 auto;
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+    position: relative;
+  }
+  .impact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: rgba(251, 248, 241, 0.05);
+    border: 1px solid rgba(224, 185, 77, 0.15);
+    border-radius: 12px;
+    font-size: 1.05rem;
+  }
+  .impact-list li::before {
+    content: '✦';
+    color: var(--gold-bright);
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  /* ===== PRICING ===== */
+  .pricing { background: var(--cream); }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .price-card {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: all .3s;
+  }
+  .price-card:hover { box-shadow: 0 20px 50px -15px rgba(10, 61, 63, 0.15); }
   .price-card.featured {
-    background: rgba(200,151,58,0.1);
-    border-color: rgba(200,151,58,0.4);
+    background: linear-gradient(180deg, var(--teal-deep), var(--forest));
+    color: var(--cream);
+    border-color: var(--gold);
+    transform: scale(1.03);
   }
-  .featured-badge {
-    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-    background: var(--gold); color: var(--pine);
-    font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-    padding: 4px 16px; border-radius: 100px;
+  @media (max-width: 720px) {
+    .price-card.featured { transform: none; }
   }
-
-  .price-label { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5; margin-bottom: 16px; }
-  .price-amount { font-family: 'Playfair Display', serif; font-size: 52px; color: var(--gold); line-height: 1; }
-  .price-unit { font-size: 14px; opacity: 0.5; margin: 8px 0 24px; }
-  .price-desc { font-size: 14px; opacity: 0.65; line-height: 1.6; }
-  .price-note { font-size: 12px; opacity: 0.4; margin-top: 16px; font-style: italic; }
-
-  .price-divider { width: 40px; height: 1px; background: rgba(200,151,58,0.3); margin: 24px auto; }
-
-  /* ── TESTIMONIAL / WHY ── */
-  .why-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  .price-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--ink);
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
   }
-
-  .why-list { list-style: none; }
-  .why-list li {
-    display: flex; gap: 16px; align-items: flex-start;
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    font-size: 16px; line-height: 1.5;
+  .price-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 1rem;
   }
-  .why-list li:last-child { border-bottom: none; }
-  .why-check { color: var(--gold); font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+  .price-card.featured .price-name { color: var(--gold-bright); }
+  .price-amount {
+    font-family: 'Fraunces', serif;
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: var(--teal-deep);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .price-card.featured .price-amount { color: var(--cream); }
+  .price-sub {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  .price-card.featured .price-sub { color: rgba(251, 248, 241, 0.75); }
+  .price-features {
+    list-style: none;
+    margin-bottom: 1.5rem;
+  }
+  .price-features li {
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed var(--line);
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+  .price-card.featured .price-features li {
+    border-bottom-color: rgba(251, 248, 241, 0.15);
+    color: rgba(251, 248, 241, 0.92);
+  }
+  .price-features li:last-child { border-bottom: none; }
+  .price-footnote {
+    font-size: 0.8rem;
+    color: var(--moss);
+    font-style: italic;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--line);
+  }
+  .price-card.featured .price-footnote { color: var(--gold-soft); border-top-color: rgba(251, 248, 241, 0.15); }
+  .price-emphasis {
+    font-weight: 600;
+    color: var(--gold);
+  }
+  .price-card.featured .price-emphasis { color: var(--gold-bright); }
 
-  /* ── CTA BAND ── */
-  .cta-band {
-    background: linear-gradient(135deg, var(--gold) 0%, #a67520 100%);
-    padding: 80px 60px;
+  /* ===== FINAL CTA ===== */
+  .final-cta {
+    background: linear-gradient(135deg, var(--teal-deep), var(--forest));
+    color: var(--cream);
     text-align: center;
+    padding: 5rem 1.5rem;
   }
-  .cta-band h2 { color: var(--pine); margin-bottom: 16px; }
-  .cta-band p { color: rgba(30,58,47,0.7); font-size: 18px; margin-bottom: 40px; }
-  .btn-dark {
-    background: var(--pine); color: var(--cream);
-    padding: 16px 40px; border-radius: 8px;
-    font-weight: 600; font-size: 15px;
-    text-decoration: none; display: inline-block;
-    transition: all 0.2s;
+  .final-cta h2 {
+    margin-bottom: 1rem;
   }
-  .btn-dark:hover { background: var(--pine-mid); transform: translateY(-2px); }
+  .final-cta p {
+    color: rgba(251, 248, 241, 0.85);
+    font-size: 1.15rem;
+    margin-bottom: 2rem;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .final-cta .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+  }
+  .final-cta .btn-primary:hover { background: var(--gold-bright); }
 
-  /* ── FOOTER ── */
+  /* ===== FOOTER ===== */
   footer {
-    background: #0f1f17;
-    padding: 48px 60px;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 24px;
+    background: var(--ink);
+    color: rgba(251, 248, 241, 0.6);
+    padding: 3rem 1.5rem 2rem;
+    text-align: center;
+    font-size: 0.9rem;
   }
-  .footer-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--gold); }
-  .footer-sub { font-size: 12px; opacity: 0.4; margin-top: 4px; letter-spacing: 1px; }
-  footer p { font-size: 13px; opacity: 0.4; }
+  footer .logo-mark { color: var(--cream); margin-bottom: 0.25rem; }
+  footer .logo-sub { color: var(--gold-bright); margin-bottom: 1.5rem; }
+  .footer-meta { margin-top: 0.5rem; opacity: 0.65; font-size: 0.8rem; }
+  .footer-meta a { color: var(--gold-bright); margin: 0 0.5rem; }
 
-  /* ── ANIMATIONS ── */
+  /* ===== ANIMATIONS ===== */
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
-  /* ── DIVIDER ── */
-  .pine-divider {
-    width: 100%; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(200,151,58,0.3), transparent);
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    nav { padding: 16px 24px; }
-    .nav-links { gap: 20px; }
-    section { padding: 60px 24px; }
-    .pricing-grid { grid-template-columns: 1fr; }
-    .why-grid { grid-template-columns: 1fr; }
-    .slides-wrap { grid-template-columns: 1fr; }
-    footer { flex-direction: column; text-align: center; }
-    .cta-band { padding: 60px 24px; }
-  }
+  .hero-content > * { animation: fadeUp .8s ease-out backwards; }
+  .hero-content > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.15s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.25s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.35s; }
+  .hero-content > *:nth-child(5) { animation-delay: 0.45s; }
+  .tv-mock { animation: fadeUp 1s ease-out 0.4s backwards; }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-logo">
-    <div class="nav-logo-main">CabinCast Pro</div>
-    <div class="nav-logo-sub">CabinCastPro@gmail.com</div>
-  </div>
-  <div class="nav-links">
-    <a href="#features">Features</a>
-    <a href="#slides">What's Included</a>
-    <a href="#pricing">Pricing</a>
-    <a href="mailto:CabinCastPro@gmail.com?subject=CabinCast Pro Interest" class="nav-cta">Get Started</a>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-mark">CabinCast Pro</span>
+      <span class="logo-sub">by Visit Island Park Idaho</span>
+    </a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#slides">What's Included</a>
+      <a href="#pricing">Pricing</a>
+      <a href="/login.html" class="nav-cta">Sign In</a>
+    </div>
   </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">Smart TV Welcome Screens for Cabin & Short-Term Rentals</div>
-  <h1>Your Cabin TV<br>Works <span>While You Sleep</span></h1>
-  <div class="hero-tagline">Smart TV Welcome Screens for Cabin & Short-Term Rentals</div>
-  <p class="hero-desc">Transform your cabin's TV into a stunning, fully automated guest experience — live weather, local activities, WiFi QR codes, your branding, and more. Set it once. It runs forever.</p>
-  <div class="hero-cta">
-    <a href="mailto:CabinCastPro@gmail.com?subject=CabinCast Pro Interest" class="btn-primary">Get Started Today</a>
-    <a href="#features" class="btn-secondary">See How It Works</a>
-  </div>
-
-  <!-- TV MOCKUP -->
-  <div class="mockup-wrap">
-    <div class="tv-frame">
-      <div class="tv-screen">
-        <div class="tv-screen-content">
-          <div class="tv-label">Welcome · Huckleberry Hut</div>
-          <div class="tv-cabin">Welcome, Sarah!</div>
-          <div class="tv-welcome">Checkout May 24 · 4 guests · Checking in Yellowstone country</div>
-        </div>
-        <div class="tv-dots">
-          <div class="tv-dot active"></div>
-          <div class="tv-dot"></div><div class="tv-dot"></div><div class="tv-dot"></div>
-          <div class="tv-dot"></div><div class="tv-dot"></div><div class="tv-dot"></div>
-          <div class="tv-dot"></div><div class="tv-dot"></div><div class="tv-dot"></div>
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <span class="hero-eyebrow">Smart TV Welcome Screens · Short-Term Rentals</span>
+        <h1>Your Cabin TV<br/><span class="gold-word">works while you sleep.</span></h1>
+        <p class="hero-by">CabinCast Pro · by Visit Island Park Idaho</p>
+        <p class="lede">Transform your cabin's TV into a stunning, fully automated guest experience — live weather, local activities, WiFi QR codes, your branding, and more. Set it once. It runs forever.</p>
+        <div class="hero-cta-row">
+          <a href="https://form.jotform.com/Lovinteara/cabincastpro-sponsor" target="_blank" rel="noopener" class="btn btn-primary">Get Started Today →</a>
+          <a href="#features" class="btn btn-secondary">See How It Works</a>
         </div>
       </div>
-      <div class="tv-stand"></div>
-      <div class="tv-base"></div>
+      <div class="tv-mock">
+        <div class="tv-header">Welcome · Huckleberry Hut</div>
+        <div class="tv-greeting">Welcome, <span class="name">Sarah!</span></div>
+        <div class="tv-details">Checkout May 24 · 4 guests · Checking in Yellowstone country</div>
+        <div class="tv-pills">
+          <span class="tv-pill">⛅ 68°F · Sunny</span>
+          <span class="tv-pill">📶 WiFi Ready</span>
+          <span class="tv-pill">🎣 Henry's Fork Live</span>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</header>
 
-<div class="pine-divider"></div>
-
-<!-- FEATURES -->
-<section id="features">
-  <div class="section-label">Why CabinCast Pro</div>
-  <h2>Everything your guests<br>need to know, <em>automatically</em></h2>
-  <p class="section-intro">No more printed binders. No more missed messages. Your guests arrive to a beautiful, personalized welcome that answers every question before they ask it. All slides are fully automated — and the system can grow with your needs.</p>
-
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">⛅</div>
-      <div class="feature-title">Live Weather & Forecasts</div>
-      <div class="feature-desc">Real-time conditions, 4-day forecast, and regional weather for Yellowstone, Grand Teton, Jackson Hole and more.</div>
+<section class="features" id="features">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="eyebrow">Why CabinCast Pro</span>
+      <h2>Everything your guests need to know, <span class="italic-accent">automatically.</span></h2>
+      <p>No more printed binders. No more missed messages. Your guests arrive to a beautiful, personalized welcome that answers every question before they ask it. All slides are fully automated — and the system can grow with your needs.</p>
     </div>
-    <div class="feature-card">
-      <div class="feature-icon">📶</div>
-      <div class="feature-title">WiFi with QR Code</div>
-      <div class="feature-desc">Guests scan the TV with their phone camera and connect instantly. No typing passwords.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🎿</div>
-      <div class="feature-title">Smart Activity Picks</div>
-      <div class="feature-desc">Weather-aware, season-aware activity recommendations that rotate every cycle. New suggestion every time.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🍕</div>
-      <div class="feature-title">Local Restaurant Guide</div>
-      <div class="feature-desc">Rotating local restaurant picks with menu QR codes, phone numbers, and hours. Skips closed days automatically.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🎣</div>
-      <div class="feature-title">Live Fishing Conditions</div>
-      <div class="feature-desc">Real-time stream flow data from USGS, seasonal fly fishing tips, and local fly shop contacts.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📸</div>
-      <div class="feature-title">Your Photo Gallery</div>
-      <div class="feature-desc">Up to 85+ full-screen property photos rotating through the slideshow. Drop in new photos anytime.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🐻</div>
-      <div class="feature-title">Safety Information</div>
-      <div class="feature-desc">Bear spray reminders, fire restriction status, trash pickup schedule — all per-property and automated.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🏔️</div>
-      <div class="feature-title">Live Webcams</div>
-      <div class="feature-desc">Sawtelle Peak mountain conditions and US-20 road conditions from Idaho 511 — updated every 2 minutes.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">✨</div>
-      <div class="feature-title">Your Brand & Logo</div>
-      <div class="feature-desc">Custom colors, your cabin logo, and your contact info on every slide. Looks like you built it yourself.</div>
+    <div class="feature-grid">
+      <div class="feature-card"><span class="feature-icon">⛅</span><h3>Live Weather & Forecasts</h3><p>Real-time conditions, 4-day forecast, and regional weather for Yellowstone, Grand Teton, Jackson Hole and more.</p></div>
+      <div class="feature-card"><span class="feature-icon">📶</span><h3>WiFi with QR Code</h3><p>Guests scan the TV with their phone camera and connect instantly. No typing passwords.</p></div>
+      <div class="feature-card"><span class="feature-icon">🎿</span><h3>Smart Activity Picks</h3><p>Weather-aware, season-aware activity recommendations that rotate every cycle. New suggestion every time.</p></div>
+      <div class="feature-card"><span class="feature-icon">🍕</span><h3>Local Restaurant Guide</h3><p>Rotating local restaurant picks with menu QR codes, phone numbers, and hours. Skips closed days automatically.</p></div>
+      <div class="feature-card"><span class="feature-icon">🎣</span><h3>Live Fishing Conditions</h3><p>Real-time stream flow data from USGS, seasonal fly fishing tips, and local fly shop contacts.</p></div>
+      <div class="feature-card"><span class="feature-icon">📸</span><h3>Your Photo Gallery</h3><p>Up to 85+ full-screen property photos rotating through the slideshow. Drop in new photos anytime.</p></div>
+      <div class="feature-card"><span class="feature-icon">🐻</span><h3>Safety Information</h3><p>Bear spray reminders, fire restriction status, trash pickup schedule — all per-property and automated.</p></div>
+      <div class="feature-card"><span class="feature-icon">🏔️</span><h3>Live Webcams</h3><p>Sawtelle Peak mountain conditions and US-20 road conditions from Idaho 511 — updated every 2 minutes.</p></div>
+      <div class="feature-card"><span class="feature-icon">✨</span><h3>Your Brand & Logo</h3><p>Custom colors, your cabin logo, and your contact info on every slide. Looks like you built it yourself.</p></div>
     </div>
   </div>
 </section>
 
-<div class="pine-divider"></div>
-
-<!-- SLIDES -->
-<section id="slides">
-  <div class="section-label">What's Included</div>
-  <h2>23 slides. All <em>automated.</em></h2>
-  <p class="section-intro">Every slide updates itself automatically. You set it up once and it runs year-round without you touching it. Additional custom slides can be added as needed — ask about pricing for extras.</p>
-
-  <div class="slides-wrap">
-    <div class="slide-item"><div class="slide-num">1</div>Personalized guest welcome with name</div>
-    <div class="slide-item"><div class="slide-num">2</div>WiFi credentials + scannable QR code</div>
-    <div class="slide-item"><div class="slide-num">3</div>Today's live weather</div>
-    <div class="slide-item"><div class="slide-num">4</div>4-day forecast</div>
-    <div class="slide-item"><div class="slide-num">5</div>Regional weather — 6 nearby cities</div>
-    <div class="slide-item"><div class="slide-num">6</div>Live mountain webcam</div>
-    <div class="slide-item"><div class="slide-num">7</div>US-20 road conditions</div>
-    <div class="slide-item"><div class="slide-num">8</div>Today's activity recommendation</div>
-    <div class="slide-item"><div class="slide-num">9</div>Local food pick with menu QR</div>
-    <div class="slide-item"><div class="slide-num">10</div>Partner deals & discounts</div>
-    <div class="slide-item"><div class="slide-num">11</div>Cabin essentials & checkout info</div>
-    <div class="slide-item"><div class="slide-num">12</div>Rotating nature & cabin quotes</div>
-    <div class="slide-item"><div class="slide-num">13</div>Local photographer spotlight</div>
-    <div class="slide-item"><div class="slide-num">14</div>Local video with background music</div>
-    <div class="slide-item"><div class="slide-num">15</div>Full-screen photo gallery</div>
-    <div class="slide-item"><div class="slide-num">16</div>Live fishing conditions — Henry's Fork</div>
-    <div class="slide-item"><div class="slide-num">17</div>Local tour guide spotlight</div>
-    <div class="slide-item"><div class="slide-num">18</div>Trash & recycling schedule</div>
-    <div class="slide-item"><div class="slide-num">19</div>Trash day reminder (pickup days only)</div>
-    <div class="slide-item"><div class="slide-num">20</div>Bear safety information</div>
-    <div class="slide-item"><div class="slide-num">21</div>Fire restrictions & campfire rules</div>
-    <div class="slide-item"><div class="slide-num">22</div>How to watch TV / streaming guide</div>
-    <div class="slide-item"><div class="slide-num">23</div>Host contact & emergency info</div>
+<section class="slides" id="slides">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="eyebrow">What's Included</span>
+      <h2>23 slides. All <span class="italic-accent">automated.</span></h2>
+      <p>Every slide updates itself automatically. You set it up once and it runs year-round without you touching it. Additional custom slides can be added as needed — ask about pricing for extras.</p>
+    </div>
+    <div class="slides-grid">
+      <div class="slide-item"><span class="slide-num">01</span><span class="slide-text">Personalized guest welcome with name</span></div>
+      <div class="slide-item"><span class="slide-num">02</span><span class="slide-text">WiFi credentials + scannable QR code</span></div>
+      <div class="slide-item"><span class="slide-num">03</span><span class="slide-text">Today's live weather</span></div>
+      <div class="slide-item"><span class="slide-num">04</span><span class="slide-text">4-day forecast</span></div>
+      <div class="slide-item"><span class="slide-num">05</span><span class="slide-text">Regional weather — 6 nearby cities</span></div>
+      <div class="slide-item"><span class="slide-num">06</span><span class="slide-text">Live mountain webcam</span></div>
+      <div class="slide-item"><span class="slide-num">07</span><span class="slide-text">US-20 road conditions</span></div>
+      <div class="slide-item"><span class="slide-num">08</span><span class="slide-text">Today's activity recommendation</span></div>
+      <div class="slide-item"><span class="slide-num">09</span><span class="slide-text">Local food pick with menu QR</span></div>
+      <div class="slide-item"><span class="slide-num">10</span><span class="slide-text">Partner deals & discounts</span></div>
+      <div class="slide-item"><span class="slide-num">11</span><span class="slide-text">Cabin essentials & checkout info</span></div>
+      <div class="slide-item"><span class="slide-num">12</span><span class="slide-text">Rotating nature & cabin quotes</span></div>
+      <div class="slide-item"><span class="slide-num">13</span><span class="slide-text">Local photographer spotlight</span></div>
+      <div class="slide-item"><span class="slide-num">14</span><span class="slide-text">Local video with background music</span></div>
+      <div class="slide-item"><span class="slide-num">15</span><span class="slide-text">Full-screen photo gallery</span></div>
+      <div class="slide-item"><span class="slide-num">16</span><span class="slide-text">Live fishing conditions — Henry's Fork</span></div>
+      <div class="slide-item"><span class="slide-num">17</span><span class="slide-text">Local tour guide spotlight</span></div>
+      <div class="slide-item"><span class="slide-num">18</span><span class="slide-text">Trash & recycling schedule</span></div>
+      <div class="slide-item"><span class="slide-num">19</span><span class="slide-text">Trash day reminder (pickup days only)</span></div>
+      <div class="slide-item"><span class="slide-num">20</span><span class="slide-text">Bear safety information</span></div>
+      <div class="slide-item"><span class="slide-num">21</span><span class="slide-text">Fire restrictions & campfire rules</span></div>
+      <div class="slide-item"><span class="slide-num">22</span><span class="slide-text">How to watch TV / streaming guide</span></div>
+      <div class="slide-item"><span class="slide-num">23</span><span class="slide-text">Host contact & emergency info</span></div>
+    </div>
   </div>
 </section>
 
-<div class="pine-divider"></div>
-
-<!-- WHY -->
-<section>
-  <div class="why-grid">
-    <div>
-      <div class="section-label">The Impact</div>
-      <h2>Guests who feel<br><em>taken care of</em><br>leave better reviews</h2>
-      <p style="opacity:0.6; line-height:1.7; margin-top:20px;">The first 10 minutes in a rental set the tone for the entire stay. CabinCast Pro makes that first impression extraordinary — without you being there.</p>
+<section class="impact">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="eyebrow">The Impact</span>
+      <h2>Guests who feel <span class="italic-accent">taken care of</span> leave better reviews.</h2>
+      <p>The first 10 minutes in a rental set the tone for the entire stay. CabinCast Pro makes that first impression extraordinary — without you being there.</p>
     </div>
-    <ul class="why-list">
-      <li><span class="why-check">✦</span>Fewer "where is the WiFi?" texts at 10pm</li>
-      <li><span class="why-check">✦</span>Guests discover local gems they wouldn't find on their own</li>
-      <li><span class="why-check">✦</span>Safety info delivered without sounding scary</li>
-      <li><span class="why-check">✦</span>Runs 24/7 with zero maintenance from you</li>
-      <li><span class="why-check">✦</span>Your branding on screen the entire stay</li>
-      <li><span class="why-check">✦</span>Updates automatically — weather, webcams, fishing — all live</li>
-      <li><span class="why-check">✦</span>Works on any TV with an HDMI port</li>
-    <li><span class="why-check">✦</span>Requires active WiFi at the property — uses live data for weather, webcams & more</li>
-    <li><span class="why-check">✦</span>Covers up to 8 properties — scales for larger portfolios, ask about pricing</li>
-    <li><span class="why-check">✦</span>Pricing covers up to 8 properties — scales for larger portfolios</li>
+    <ul class="impact-list">
+      <li>Fewer "where is the WiFi?" texts at 10pm</li>
+      <li>Guests discover local gems they wouldn't find on their own</li>
+      <li>Safety info delivered without sounding scary</li>
+      <li>Runs 24/7 with zero maintenance from you</li>
+      <li>Your branding on screen the entire stay</li>
+      <li>Updates automatically — weather, webcams, fishing — all live</li>
+      <li>Works on any TV with an HDMI port</li>
+      <li>Requires active WiFi at the property — uses live data for weather, webcams & more</li>
     </ul>
   </div>
 </section>
 
-<div class="pine-divider"></div>
-
-<!-- PRICING -->
-<div style="padding: 100px 60px; background: linear-gradient(180deg, transparent 0%, rgba(15,31,23,0.5) 100%);">
-<div class="pricing-section" id="pricing">
-  <div class="section-label" style="text-align:center;">Simple Pricing</div>
-  <h2 style="text-align:center;">Pay only for <em>active months</em></h2>
-  <p style="opacity:0.6; font-size:18px; max-width:560px; margin:0 auto; line-height:1.7;">Seasonal rental? Only pay when guests are checking in. Pause anytime. Year 2 and beyond — just the monthly service fee.</p>
-
-  <div class="pricing-grid">
-
-    <div class="price-card">
-      <div class="price-label">Hardware + Installation</div>
-      <div class="price-amount">$175</div>
-      <div class="price-unit">one-time only · never charged again</div>
-      <div class="price-divider"></div>
-      <div class="price-desc">
-        Raspberry Pi 4 mini computer<br>
-        SD card included<br>
-        Professional setup & configuration<br>
-        HDMI cable included<br>
-        Installed & tested at your property<br>
-        <br>
-        <strong style="color:var(--gold);">Have your own hardware?</strong><br>
-        $100 one-time installation fee applies<br>
-        in lieu of hardware purchase
-      </div>
-      <div class="price-note">Installation fee is one-time only — waived when hardware is supplied by us. No recurring hardware or install charges ever.</div>
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="eyebrow">Simple Pricing</span>
+      <h2>Pay only for <span class="italic-accent">active months.</span></h2>
+      <p>Seasonal rental? Only pay when guests are checking in. Pause anytime. Year 2 and beyond — just the monthly service fee.</p>
     </div>
+    <div class="pricing-grid">
 
-    <div class="price-card featured">
-      <div class="price-label">Basic Monthly</div>
-      <div class="price-amount">$30</div>
-      <div class="price-unit">per month · only while active</div>
-      <div class="price-divider"></div>
-      <div class="price-desc">
-        All 23 slides included<br>
-        Live data — weather, webcams, fishing<br>
-        Unlimited photo gallery updates<br>
-        Content & software updates<br>
-        Email support<br>
-        Pause anytime in off-season
+      <div class="price-card">
+        <div class="price-name">Hardware + Installation</div>
+        <div class="price-amount">$175</div>
+        <div class="price-sub">one-time only · never charged again</div>
+        <ul class="price-features">
+          <li>Raspberry Pi 4 mini computer</li>
+          <li>SD card included</li>
+          <li>Professional setup & configuration</li>
+          <li>HDMI cable included</li>
+          <li>Installed & tested at your property</li>
+        </ul>
+        <div class="price-footnote">
+          <strong>Have your own hardware?</strong><br/>
+          $100 one-time installation fee applies in lieu of hardware purchase.
+        </div>
       </div>
-      <div class="price-note">Only pay during months with active guests</div>
-    </div>
 
-    <div class="price-card featured">
-      <div class="featured-badge">Most Popular</div>
-      <div class="price-label">Integrated Monthly</div>
-      <div class="price-amount">$40</div>
-      <div class="price-unit">per month · only while active</div>
-      <div class="price-divider"></div>
-      <div class="price-desc">
-        Everything in Basic<br>
-        <em>plus $10/mo</em> for booking integration<br>
-        OwnerRez · Airbnb · VRBO<br>
-        Guest name on welcome slide<br>
-        Auto checkout date display<br>
-        Party size & pet icons<br>
-        Personalized experience per stay
+      <div class="price-card">
+        <div class="price-name">Basic Monthly</div>
+        <div class="price-amount">$30</div>
+        <div class="price-sub">per month · only while active</div>
+        <ul class="price-features">
+          <li>All 23 slides included</li>
+          <li>Live data — weather, webcams, fishing</li>
+          <li>Rotating photo gallery</li>
+          <li>Content & software updates</li>
+          <li>Email support</li>
+          <li>Pause anytime in off-season</li>
+        </ul>
+        <div class="price-footnote">Only pay during months with active guests.</div>
       </div>
-      <div class="price-note">$30 base + $10 personalization add-on = $40/month total. Requires compatible booking platform.</div>
-    </div>
 
+      <div class="price-card featured">
+        <div class="price-badge">Most Popular</div>
+        <div class="price-name">Integrated Monthly</div>
+        <div class="price-amount">$40</div>
+        <div class="price-sub">per month · only while active</div>
+        <ul class="price-features">
+          <li>Everything in Basic</li>
+          <li><span class="price-emphasis">+$10/mo</span> for booking integration</li>
+          <li>OwnerRez · Airbnb · VRBO</li>
+          <li>Guest name on welcome slide</li>
+          <li>Auto checkout date display</li>
+          <li>Party size & pet icons</li>
+          <li>Personalized experience per stay</li>
+        </ul>
+        <div class="price-footnote">$30 base + $10 personalization = $40/month. Requires compatible booking platform.</div>
+      </div>
+    </div>
   </div>
+</section>
 
-  <div style="margin-top:32px; background:rgba(200,151,58,0.12); border:1px solid rgba(200,151,58,0.35); border-radius:12px; padding:20px 28px; text-align:center;">
-  <p style="font-size:18px; color:var(--gold); font-weight:700; margin-bottom:8px;">★ Introductory Offer</p>
-  <p style="font-size:15px; color:var(--gold-light); line-height:1.6;">These are introductory rates — pricing will increase for new clients after our launch period.<br>Sign up now to lock in your rate permanently!</p>
-</div>
-<p style="margin-top:16px; opacity:0.4; font-size:13px;">Pricing shown is for up to 8 properties · Larger portfolios welcome — contact us for custom pricing<br>
-$100 installation fee applies when client provides own hardware · Fee waived when hardware is supplied by us<br>
-Active WiFi required at property · Currently serving Island Park, ID and surrounding Yellowstone region</p>
-</div>
-</div>
+<section class="final-cta" id="signup">
+  <h2>Ready to <span class="italic-accent">wow your guests?</span></h2>
+  <p>Let's get your cabin set up. Most installs are completed in under an hour. Drop your info and we'll be in touch.</p>
+  <a href="https://form.jotform.com/Lovinteara/cabincastpro-sponsor" target="_blank" rel="noopener" class="btn btn-primary" id="signup-cta">Get Started →</a>
+</section>
 
-<!-- CTA BAND -->
-<div class="cta-band">
-  <h2 style="font-size:clamp(32px,5vw,56px);">Ready to wow your guests?</h2>
-  <p>Let's get your cabin set up. Most installs are completed in under an hour.</p>
-  <a href="mailto:CabinCastPro@gmail.com?subject=CabinCast Pro Interest" class="btn-dark">Email Us to Get Started</a>
-</div>
-
-<!-- FOOTER -->
 <footer>
-  <div>
-    <div class="footer-logo">CabinCast Pro</div>
-    <div class="footer-sub">CabinCastPro@gmail.com</div>
+  <div class="logo-mark">CabinCast Pro</div>
+  <div class="logo-sub">by Visit Island Park Idaho</div>
+  <div>info@VisitIslandParkIdaho.com · Island Park, ID 83429</div>
+  <div class="footer-meta">
+    © 2026 Visit Island Park Idaho. All rights reserved.
+    <br/><a href="/login.html">Sign In</a>
   </div>
-  <p>CabinCastPro@gmail.com · Island Park, ID 83429</p>
-  <p>© 2026 CabinCast Pro. All rights reserved.</p>
 </footer>
 
 </body>

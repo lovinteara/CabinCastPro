@@ -1,0 +1,3 @@
+# Redirect entire welcomescreenpro.com domain to cabincastpro.com
+https://welcomescreenpro.com/*     https://cabincastpro.com/:splat     301!
+https://www.welcomescreenpro.com/* https://cabincastpro.com/:splat     301!
