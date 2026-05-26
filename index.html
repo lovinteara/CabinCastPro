@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>CabinCast Pro — Smart TV Welcome Screens for Short-Term Rentals</title>
 <meta name="description" content="Transform your cabin's TV into a fully automated guest experience. Live weather, local activities, WiFi QR codes, your branding. Set it once. It runs forever." />
+<link rel="icon" type="image/png" sizes="32x32" href="/logo/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="/logo/favicon-64.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/logo/favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -89,6 +92,14 @@
     display: flex;
     flex-direction: column;
     line-height: 1;
+  }
+  .logo-img {
+    height: 48px;
+    width: auto;
+    display: block;
+  }
+  @media (max-width: 600px) {
+    .logo-img { height: 36px; }
   }
   .logo-mark {
     font-family: 'Fraunces', serif;
@@ -571,6 +582,43 @@
   }
   .price-card.featured .price-volume-note { color: var(--gold-bright); }
 
+  /* Not-included section in Trailhead */
+  .not-included {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem 0.85rem;
+    background: rgba(10, 61, 63, 0.04);
+    border-left: 2px solid var(--moss);
+    border-radius: 6px;
+  }
+  .not-included-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--moss);
+    margin-bottom: 0.4rem;
+  }
+  .not-included ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .not-included ul li {
+    font-size: 0.82rem;
+    color: var(--moss);
+    padding: 0.15rem 0;
+    border-bottom: none;
+    position: relative;
+    padding-left: 1.1rem;
+  }
+  .not-included ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--moss);
+  }
+
   /* ===== FINAL CTA ===== */
   .final-cta {
     background: linear-gradient(135deg, var(--teal-deep), var(--forest));
@@ -605,6 +653,12 @@
   }
   footer .logo-mark { color: var(--cream); margin-bottom: 0.25rem; }
   footer .logo-sub { color: var(--gold-bright); margin-bottom: 1.5rem; }
+  .footer-logo {
+    height: 130px;
+    width: auto;
+    display: block;
+    margin: 0 auto 1.5rem;
+  }
   .footer-meta { margin-top: 0.5rem; opacity: 0.65; font-size: 0.8rem; }
   .footer-meta a { color: var(--gold-bright); margin: 0 0.5rem; }
 
@@ -627,8 +681,7 @@
 <nav>
   <div class="nav-inner">
     <a href="#" class="logo">
-      <span class="logo-mark">CabinCast Pro</span>
-      <span class="logo-sub">Smart TV Welcome Screens</span>
+      <img src="/logo/cabincastpro-logo-primary.svg" alt="CabinCast Pro" class="logo-img"/>
     </a>
     <div class="nav-links">
       <a href="#features">Features</a>
@@ -768,7 +821,7 @@
       </div>
 
       <div class="price-card">
-        <div class="price-name">Basic Plan</div>
+        <div class="price-name">Trailhead</div>
         <div class="price-amount small">$30<span style="font-size: 1rem; font-weight: 400; color: var(--moss);">/mo total</span></div>
         <div class="price-sub">flat monthly rate · not per property</div>
         <div class="tier-table">
@@ -779,41 +832,51 @@
         <ul class="price-features">
           <li>All slides included</li>
           <li>Live data — weather, webcams, fishing</li>
-          <li>Rotating photo gallery</li>
+          <li><span style="color: var(--gold); font-weight: 600;">Curated</span> photo gallery <span style="color: var(--moss); font-size: 0.8rem;">(our stunning collection)</span></li>
           <li>Content &amp; software updates</li>
           <li>Email support</li>
         </ul>
+        <div class="not-included">
+          <div class="not-included-label">Not included:</div>
+          <ul>
+            <li>Guest name personalization</li>
+            <li>Your own cabin photos</li>
+            <li>Auto checkout dates</li>
+          </ul>
+        </div>
         <div class="price-volume-note">One Flat Rate, All Properties</div>
         <div class="price-footnote">Billed per month or part of month. Turn off during shoulder &amp; mud seasons.</div>
       </div>
 
       <div class="price-card featured">
         <div class="price-badge">Most Popular</div>
-        <div class="price-name">Integrated Plan</div>
+        <div class="price-name">Summit</div>
         <div class="price-amount small">$40<span style="font-size: 1rem; font-weight: 400; color: rgba(251, 248, 241, 0.7);">/mo total</span></div>
-        <div class="price-sub">flat monthly rate · not per property</div>
+        <div class="price-sub">fully personalized · per cabin</div>
         <div class="tier-table">
           <div class="tier-row"><span class="tier-label">1–8 properties</span><span class="tier-price">$40/mo</span></div>
           <div class="tier-row"><span class="tier-label">9–15 properties</span><span class="tier-price">$75/mo</span></div>
           <div class="tier-row"><span class="tier-label">16–25 properties</span><span class="tier-price">$125/mo</span></div>
         </div>
         <ul class="price-features">
-          <li>Everything in Basic</li>
-          <li>OwnerRez · Airbnb · VRBO booking integration</li>
-          <li>Guest name on welcome slide</li>
-          <li>Auto checkout date display</li>
-          <li>Party size &amp; pet icons</li>
-          <li>Personalized experience per stay</li>
+          <li>Everything in Trailhead, plus:</li>
+          <li><span class="price-emphasis">✦ Your cabin's own photo gallery</span></li>
+          <li><span class="price-emphasis">✦ Guest's name on welcome slide</span></li>
+          <li><span class="price-emphasis">✦ Auto checkout date display</span></li>
+          <li><span class="price-emphasis">✦ Party size &amp; pet icons</span></li>
+          <li>OwnerRez · Airbnb · VRBO booking sync</li>
+          <li>Fully personalized per stay</li>
         </ul>
         <div class="price-volume-note">One Flat Rate, All Properties</div>
         <div class="price-footnote">Requires compatible booking platform. Pause anytime.</div>
       </div>
 
       <div class="price-card">
-        <div class="price-name">Portfolio Plan</div>
+        <div class="price-name">Expedition</div>
         <div class="price-amount">26+</div>
         <div class="price-sub">properties · custom pricing</div>
         <ul class="price-features">
+          <li>Everything in Summit, plus:</li>
           <li>Custom volume pricing</li>
           <li>Dedicated onboarding</li>
           <li>Priority support</li>
@@ -825,7 +888,7 @@
         <div class="price-footnote">
           <strong>Managing a large portfolio?</strong><br/>
           Get in touch and we'll build a plan that fits.<br/>
-          <a href="mailto:cabincastpro@gmail.com?subject=Portfolio Plan Inquiry" style="color: var(--teal-bright); font-weight: 600; text-decoration: none;">cabincastpro@gmail.com →</a>
+          <a href="mailto:cabincastpro@gmail.com?subject=Expedition Plan Inquiry" style="color: var(--teal-bright); font-weight: 600; text-decoration: none;">cabincastpro@gmail.com →</a>
         </div>
       </div>
     </div>
@@ -839,8 +902,7 @@
 </section>
 
 <footer>
-  <div class="logo-mark">CabinCast Pro</div>
-  <div class="logo-sub">Smart TV Welcome Screens for Short-Term Rentals</div>
+  <img src="/logo/cabincastpro-logo-stacked-dark.svg" alt="CabinCast Pro · Smart Welcome Screens" class="footer-logo"/>
   <div>cabincastpro@gmail.com</div>
   <div class="footer-meta">
     © 2026 CabinCast Pro. All rights reserved.
