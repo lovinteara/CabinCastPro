@@ -435,9 +435,9 @@
   .pricing { background: var(--cream); }
   .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    max-width: 1100px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    max-width: 1200px;
     margin: 0 auto;
   }
   .price-card {
@@ -526,6 +526,52 @@
   }
   .price-card.featured .price-emphasis { color: var(--gold-bright); }
 
+  /* Tier table inside price cards */
+  .tier-table {
+    margin: 1.25rem 0 1.25rem;
+    background: var(--teal-soft);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .price-card.featured .tier-table {
+    background: rgba(251, 248, 241, 0.08);
+    border: 1px solid rgba(224, 185, 77, 0.2);
+  }
+  .tier-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0.85rem;
+    border-bottom: 1px solid rgba(10, 61, 63, 0.08);
+    font-size: 0.9rem;
+  }
+  .price-card.featured .tier-row {
+    border-bottom-color: rgba(251, 248, 241, 0.1);
+  }
+  .tier-row:last-child { border-bottom: none; }
+  .tier-label {
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .price-card.featured .tier-label { color: rgba(251, 248, 241, 0.85); }
+  .tier-price {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    color: var(--teal-deep);
+    font-size: 1.05rem;
+  }
+  .price-card.featured .tier-price { color: var(--gold-bright); }
+  .price-amount.small { font-size: 2.5rem; }
+  .price-volume-note {
+    font-size: 0.78rem;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+  .price-card.featured .price-volume-note { color: var(--gold-bright); }
+
   /* ===== FINAL CTA ===== */
   .final-cta {
     background: linear-gradient(135deg, var(--teal-deep), var(--forest));
@@ -583,7 +629,7 @@
   <div class="nav-inner">
     <a href="#" class="logo">
       <span class="logo-mark">CabinCast Pro</span>
-      <span class="logo-sub">by Visit Island Park Idaho</span>
+      <span class="logo-sub">Smart TV Welcome Screens</span>
     </a>
     <div class="nav-links">
       <a href="#features">Features</a>
@@ -600,10 +646,10 @@
       <div class="hero-content">
         <span class="hero-eyebrow">Smart TV Welcome Screens · Short-Term Rentals</span>
         <h1>Your Cabin TV<br/><span class="gold-word">works while you sleep.</span></h1>
-        <p class="hero-by">CabinCast Pro · by Visit Island Park Idaho</p>
+        <p class="hero-by">CabinCast Pro · Smart TV Welcome Screens</p>
         <p class="lede">Transform your cabin's TV into a stunning, fully automated guest experience — live weather, local activities, WiFi QR codes, your branding, and more. Set it once. It runs forever.</p>
         <div class="hero-cta-row">
-          <a href="https://form.jotform.com/Lovinteara/cabincastpro-sponsor" target="_blank" rel="noopener" class="btn btn-primary">Get Started Today →</a>
+          <a href="https://form.jotform.com/Lovinteara/cabincast-pro-signup" target="_blank" rel="noopener" class="btn btn-primary">Get Started Today →</a>
           <a href="#features" class="btn btn-secondary">See How It Works</a>
         </div>
       </div>
@@ -646,7 +692,7 @@
   <div class="wrap">
     <div class="section-header">
       <span class="eyebrow">What's Included</span>
-      <h2>23 slides. All <span class="italic-accent">automated.</span></h2>
+      <h2>Several slides. All <span class="italic-accent">automated.</span></h2>
       <p>Every slide updates itself automatically. You set it up once and it runs year-round without you touching it. Additional custom slides can be added as needed — ask about pricing for extras.</p>
     </div>
     <div class="slides-grid">
@@ -702,57 +748,86 @@
     <div class="section-header">
       <span class="eyebrow">Simple Pricing</span>
       <h2>Pay only for <span class="italic-accent">active months.</span></h2>
-      <p>Seasonal rental? Only pay when guests are checking in. Pause anytime. Year 2 and beyond — just the monthly service fee.</p>
+      <p>Seasonal rental? Turn it off during shoulder or mud seasons. You're billed per month — or part of a month — only while CabinCast Pro is active.</p>
     </div>
     <div class="pricing-grid">
 
       <div class="price-card">
-        <div class="price-name">Hardware + Installation</div>
+        <div class="price-name">Hardware &amp; Setup</div>
         <div class="price-amount">$175</div>
-        <div class="price-sub">one-time only · never charged again</div>
+        <div class="price-sub">one-time setup cost · per property</div>
         <ul class="price-features">
-          <li>Raspberry Pi 4 mini computer</li>
-          <li>SD card included</li>
-          <li>Professional setup & configuration</li>
-          <li>HDMI cable included</li>
-          <li>Installed & tested at your property</li>
+          <li>Hardware/software install</li>
+          <li>Professional setup &amp; configuration</li>
+          <li>Tested &amp; ready for guests</li>
+          <li>One-time cost — never charged again</li>
         </ul>
         <div class="price-footnote">
-          <strong>Have your own hardware?</strong><br/>
-          $100 one-time installation fee applies in lieu of hardware purchase.
+          <strong>9+ properties?</strong><br/>
+          Setup drops to $150/property.
         </div>
       </div>
 
       <div class="price-card">
-        <div class="price-name">Basic Monthly</div>
-        <div class="price-amount">$30</div>
-        <div class="price-sub">per month · only while active</div>
+        <div class="price-name">Basic Plan</div>
+        <div class="price-amount small">$30<span style="font-size: 1rem; font-weight: 400; color: var(--moss);">/mo total</span></div>
+        <div class="price-sub">flat monthly rate · not per property</div>
+        <div class="tier-table">
+          <div class="tier-row"><span class="tier-label">1–8 properties</span><span class="tier-price">$30/mo</span></div>
+          <div class="tier-row"><span class="tier-label">9–15 properties</span><span class="tier-price">$55/mo</span></div>
+          <div class="tier-row"><span class="tier-label">16–25 properties</span><span class="tier-price">$100/mo</span></div>
+        </div>
         <ul class="price-features">
-          <li>All 23 slides included</li>
+          <li>All slides included</li>
           <li>Live data — weather, webcams, fishing</li>
           <li>Rotating photo gallery</li>
-          <li>Content & software updates</li>
+          <li>Content &amp; software updates</li>
           <li>Email support</li>
-          <li>Pause anytime in off-season</li>
         </ul>
-        <div class="price-footnote">Only pay during months with active guests.</div>
+        <div class="price-volume-note">One Flat Rate, All Properties</div>
+        <div class="price-footnote">Billed per month or part of month. Turn off during shoulder &amp; mud seasons.</div>
       </div>
 
       <div class="price-card featured">
         <div class="price-badge">Most Popular</div>
-        <div class="price-name">Integrated Monthly</div>
-        <div class="price-amount">$40</div>
-        <div class="price-sub">per month · only while active</div>
+        <div class="price-name">Integrated Plan</div>
+        <div class="price-amount small">$40<span style="font-size: 1rem; font-weight: 400; color: rgba(251, 248, 241, 0.7);">/mo total</span></div>
+        <div class="price-sub">flat monthly rate · not per property</div>
+        <div class="tier-table">
+          <div class="tier-row"><span class="tier-label">1–8 properties</span><span class="tier-price">$40/mo</span></div>
+          <div class="tier-row"><span class="tier-label">9–15 properties</span><span class="tier-price">$75/mo</span></div>
+          <div class="tier-row"><span class="tier-label">16–25 properties</span><span class="tier-price">$125/mo</span></div>
+        </div>
         <ul class="price-features">
           <li>Everything in Basic</li>
-          <li><span class="price-emphasis">+$10/mo</span> for booking integration</li>
-          <li>OwnerRez · Airbnb · VRBO</li>
+          <li>OwnerRez · Airbnb · VRBO booking integration</li>
           <li>Guest name on welcome slide</li>
           <li>Auto checkout date display</li>
-          <li>Party size & pet icons</li>
+          <li>Party size &amp; pet icons</li>
           <li>Personalized experience per stay</li>
         </ul>
-        <div class="price-footnote">$30 base + $10 personalization = $40/month. Requires compatible booking platform.</div>
+        <div class="price-volume-note">One Flat Rate, All Properties</div>
+        <div class="price-footnote">Requires compatible booking platform. Pause anytime.</div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-name">Portfolio Plan</div>
+        <div class="price-amount">26+</div>
+        <div class="price-sub">properties · custom pricing</div>
+        <ul class="price-features">
+          <li>Custom volume pricing</li>
+          <li>Dedicated onboarding</li>
+          <li>Priority support</li>
+          <li>Bulk hardware discounts ($150/unit)</li>
+          <li>White-label options available</li>
+          <li>Multi-property dashboard <em>(coming soon)</em></li>
+        </ul>
+        <div class="price-volume-note">Let's Talk</div>
+        <div class="price-footnote">
+          <strong>Managing a large portfolio?</strong><br/>
+          Get in touch and we'll build a plan that fits.<br/>
+          <a href="mailto:cabincastpro@gmail.com?subject=Portfolio Plan Inquiry" style="color: var(--teal-bright); font-weight: 600; text-decoration: none;">cabincastpro@gmail.com →</a>
+        </div>
       </div>
     </div>
   </div>
@@ -761,16 +836,16 @@
 <section class="final-cta" id="signup">
   <h2>Ready to <span class="italic-accent">wow your guests?</span></h2>
   <p>Let's get your cabin set up. Most installs are completed in under an hour. Drop your info and we'll be in touch.</p>
-  <a href="https://form.jotform.com/Lovinteara/cabincastpro-sponsor" target="_blank" rel="noopener" class="btn btn-primary" id="signup-cta">Get Started →</a>
+  <a href="https://form.jotform.com/Lovinteara/cabincast-pro-signup" target="_blank" rel="noopener" class="btn btn-primary" id="signup-cta">Get Started →</a>
 </section>
 
 <footer>
   <div class="logo-mark">CabinCast Pro</div>
-  <div class="logo-sub">by Visit Island Park Idaho</div>
-  <div>info@VisitIslandParkIdaho.com · Island Park, ID 83429</div>
+  <div class="logo-sub">Smart TV Welcome Screens for Short-Term Rentals</div>
+  <div>cabincastpro@gmail.com</div>
   <div class="footer-meta">
-    © 2026 Visit Island Park Idaho. All rights reserved.
-    <br/><a href="/login.html">Sign In</a>
+    © 2026 CabinCast Pro. All rights reserved.
+    <br/><a href="/login.html">Sign In</a> · <a href="https://form.jotform.com/Lovinteara/cabincastpro-sponsor" target="_blank" rel="noopener">Become a Sponsor</a>
   </div>
 </footer>
 
