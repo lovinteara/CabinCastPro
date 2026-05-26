@@ -443,6 +443,48 @@
 
   /* ===== PRICING ===== */
   .pricing { background: var(--cream); }
+
+  /* Founding customer badge */
+  .founding-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    max-width: 540px;
+    margin: 0 auto 2.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, var(--gold-soft), var(--cream));
+    border: 1.5px solid var(--gold);
+    border-radius: 100px;
+    box-shadow: 0 4px 20px rgba(201, 164, 73, 0.15);
+    animation: foundingPulse 3s ease-in-out infinite;
+  }
+  .founding-icon {
+    color: var(--gold);
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+  .founding-text {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 0.85rem;
+    color: var(--teal-deep);
+    letter-spacing: 0.02em;
+  }
+  .founding-text strong {
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+  }
+  @keyframes foundingPulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(201, 164, 73, 0.15); }
+    50% { box-shadow: 0 4px 30px rgba(201, 164, 73, 0.35); }
+  }
+  @media (max-width: 600px) {
+    .founding-badge { flex-wrap: wrap; padding: 0.65rem 1.25rem; }
+    .founding-text { font-size: 0.78rem; text-align: center; }
+  }
   .pricing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -797,6 +839,11 @@
 
 <section class="pricing" id="pricing">
   <div class="wrap">
+    <div class="founding-badge">
+      <span class="founding-icon">★</span>
+      <span class="founding-text"><strong>Founding Customer Pricing</strong> — lock in 2026 rates</span>
+      <span class="founding-icon">★</span>
+    </div>
     <div class="section-header">
       <span class="eyebrow">Simple Pricing</span>
       <h2>Pay only for <span class="italic-accent">active months.</span></h2>
